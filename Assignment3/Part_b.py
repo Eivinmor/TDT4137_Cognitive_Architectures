@@ -8,6 +8,14 @@ distance_dictionary = {
     "VeryBig": {"type": "grade", "x0": 7.5, "x1": 9}
 }
 
+delta_dictionary = {
+    "ShrinkingFast": {"type": "reverse_grade", "x0": -4, "x1": -2.5},
+    "Shrinking": {"type": "triangle", "x0": -3.5, "x1": -2, "x2": -0.5},
+    "Stable": {"type": "triangle", "x0": -1.5, "x1": 0, "x2": 1.5},
+    "Growing": {"type": "triangle", "x0": 0.5, "x1": 2, "x2": 3.5},
+    "GrowingFast": {"type": "grade", "x0": 2.5, "x1": 4},
+}
+
 def triangle(position, x0, x1, x2, clip):
     value = 0.0
     if position >= x0 and position <= x1:
