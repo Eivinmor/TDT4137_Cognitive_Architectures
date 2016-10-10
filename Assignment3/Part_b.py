@@ -28,8 +28,8 @@ action_dict = {
 distance_value = 3.7
 delta_value = 1.2
 
-action_range_min = -10
-action_range_max = 10
+action_range_min = -10  # Can be automated by setting to lowest x value in action_dict
+action_range_max = 10   # Can be automated by setting to highest x value in action_dict
 
 
 def mamdani_resonate():
@@ -58,9 +58,11 @@ def mamdani_resonate():
             print("-", end="")
             i += 1
         print("*")
-
-    cog = dividend/divisor
-    print("\nCOG: ", cog)
+    if divisor > 0:
+        cog = dividend/divisor
+    else:
+        cog = 0
+    print("\nCOG: ", round(cog, 2))
     cog_action, cog_value = get_max_action(cog)
     print("Action: ", cog_action)
 
@@ -75,6 +77,7 @@ def get_max_action(position):
             cur_max_value = value
     return cur_max_action, cur_max_value
 
+
 def fuzzy(var):
     if var in distance_dict:
         position = distance_value
@@ -85,6 +88,7 @@ def fuzzy(var):
     function = getattr(this_module, var_dict["type"])
     fuzzy_value = function(position, var_dict["x"], 1)
     return fuzzy_value
+
 
 def get_value(action, position):
     function = getattr(this_module, action_dict[action]["type"])
