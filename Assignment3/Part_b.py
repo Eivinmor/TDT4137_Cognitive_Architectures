@@ -39,6 +39,9 @@ def mamdani_resonate():
     action_dict["FloorIt"]["cut"] = AND(fuzzy("VeryBig"), OR(NOT(fuzzy("Growing")), NOT(fuzzy("GrowingFast"))))
     action_dict["BrakeHard"]["cut"] = fuzzy("VerySmall")
 
+    print("\nDistance value: ", distance_value)
+    print("Delta value: ", delta_value)
+
     print("\nCut values:")
     for key, dict in action_dict.items():
         print("{:<12}".format(key), round(dict["cut"], 2))
