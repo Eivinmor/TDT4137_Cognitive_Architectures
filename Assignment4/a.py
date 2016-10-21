@@ -11,31 +11,35 @@ def generate_random_weights(range_min, range_max):
 
 generate_random_weights(-0.5, 0.5)
 threshold = 0.2
-print("\nThreshold:", threshold, end="\n\n")
+print("\nThreshold:", threshold)
+print("Learning rate:", learning_rate, end="\n\n")
+print("\033[1m")
 print('{:<6}'.format("Epoch"),
       '{:<8}'.format("Inputs"),
       '{:<8}'.format("Desired"),
-      '{:<18}'.format("InitWghts"),
-      '{:<10}'.format("Actual"),
-      '{:<6}'.format("Error"),
-      '{:<10}'.format("FinalWghts"))
+      '{:<16}'.format("InitWghts"),
+      '{:<8}'.format("Actual"),
+      '{:<8}'.format("Error"),
+      '{:<16}'.format("FinalWghts"))
+print("\033[0m", end="")
+
 
 def perceptron(input_list, desired_output):
 
     print('{:<8}'.format(str(input_list)), end=" ")
     print('{:<8}'.format(desired_output), end=" ")
     round_weights = [round(weight, 2) for weight in weights_list]
-    print('{:<18}'.format(str(round_weights)), end=" ")
+    print('{:<16}'.format(str(round_weights)), end=" ")
 
     actual_output = neuron_step(input_list)
     error = desired_output - actual_output
     for i in range(len(input_list)):
         update_weight(i, input_list[i], error)
 
-    print('{:<10}'.format(actual_output), end=" ")
+    print('{:<8}'.format(actual_output), end=" ")
     print('{:<8}'.format(error), end=" ")
     round_weights = [round(weight, 2) for weight in weights_list]
-    print('{:<18}'.format(str(round_weights)))
+    print('{:<16}'.format(str(round_weights)))
 
 
     return error
@@ -61,9 +65,10 @@ while total_error != 0:
     print('{:<6}'.format(epoch), end=" ")
     total_error += abs(perceptron([0, 0], 0))
     print('{:<6}'.format(""), end=" ")
-    total_error += abs(perceptron([0, 1], 1))
+    total_error += abs(perceptron([0, 1], 0))
     print('{:<6}'.format(""), end=" ")
-    total_error += abs(perceptron([1, 0], 1))
+    total_error += abs(perceptron([1, 0], 0))
     print('{:<6}'.format(""), end=" ")
     total_error += abs(perceptron([1, 1], 1))
-    print("Total error:", total_error)
+    # print("Total error:", total_error)
+    print()
