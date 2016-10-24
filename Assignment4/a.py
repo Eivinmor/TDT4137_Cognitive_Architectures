@@ -22,17 +22,15 @@ print('{:<5}'.format("Epoch"),
       '{:>10}'.format("Result"),
       '{:>8}'.format("Actual"),
       '{:>8}'.format("Error"),
-      '{:>14}'.format("FinalWghts"))
-print("\033[0m", end="")
+      '{:>14}'.format("FinalWghts"),
+      "\033[0m")
 
 
 def perceptron(input_list, desired_output):
-
     print('{:>8}'.format(str(input_list)), end=" ")
     print('{:>8}'.format(desired_output), end=" ")
     print('{:>2}'.format(""), end=" ")
-    [print("{:>5}".format("{0:.1f}".format(weight)), end=" ") for weight in weights_list]
-    # print('{:<16}'.format(str(round_weights)), end=" ")
+    for weight in weights_list: print("{:>5}".format("{0:.1f}".format(weight)), end=" ")
 
     actual_output = step_activation(input_list)
     error = desired_output - actual_output
@@ -42,9 +40,8 @@ def perceptron(input_list, desired_output):
     print('{:>8}'.format(actual_output), end=" ")
     print('{:>8}'.format(error), end=" ")
     print('{:>2}'.format(""), end=" ")
-    [print("{:>5}".format("{0:.1f}".format(weight)), end=" ") for weight in weights_list]
+    for weight in weights_list: print("{:>5}".format("{0:.1f}".format(weight)), end=" ")
     print()
-
     return error
 
 
